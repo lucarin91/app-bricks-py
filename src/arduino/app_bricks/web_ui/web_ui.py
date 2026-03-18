@@ -253,8 +253,8 @@ class WebUI:
             methods=["GET"],
             name="index",
         )
+        self.app.mount("/webui/libs", NonCachedStaticFiles(directory=os.path.join(os.path.dirname(__file__), "jslibs")), name="static-jslibs")
         self.app.mount(url_path, NonCachedStaticFiles(directory=self._assets_dir_path, html=True), name="static")
-        self.app.mount("/libs/", NonCachedStaticFiles(directory=os.path.join(os.path.dirname(__file__), "libs")), name="libs-static")
 
     def _init_socketio(self):
         @self.sio.on("connect")
